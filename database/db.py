@@ -36,9 +36,15 @@ class Database:
             print(e)
             return False
 
+    def exec(self, query: str) -> pyodbc.Cursor:
+        cursor = self.conn.cursor()
 
-    def exec(self):
-        pass
+        try:
+            cursor.execute(query)
+            return cursor
+        except Exception as e:
+            print(e)
+            return None
 
     def disconnect(self):
         pass
