@@ -1,7 +1,3 @@
-from database.db import Database
-from repository.biDashboardRepository import BiDashboardRepository
-
-
 import dash
 from dash import dcc, html
 import plotly.graph_objects as go
@@ -34,15 +30,6 @@ app.layout = html.Div([
     dcc.Graph(id='bar-chart', figure=fig)
 ])
 
-
-
-    
-
-
-class UI:
-    def __init__(self, repo: BiDashboardRepository):
-        self.repository = repo
-        print("ui initialized")
-
-    def run(self):
-      app.run(debug=True)
+# 🔥 New correct way to run the server
+if __name__ == '__main__':
+    app.run(debug=True)
