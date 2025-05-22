@@ -11,5 +11,3 @@ if __name__ == "__main__":
     repository = BiDashboardRepository(db=db)
 
     UI(repo=repository).run()
-
-    print(repository.getStock(1))
