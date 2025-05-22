@@ -1,5 +1,6 @@
 from database.db import Database
-from view.view import initUI
+from repository.biDashboardRepository import BiDashboardRepository
+from view.view import UI
 
 if __name__ == "__main__":
     db: Database = Database()
@@ -7,4 +8,6 @@ if __name__ == "__main__":
     if not db.connect():
         exit(1)
 
-    initUI()
+    repository = BiDashboardRepository(db=db)
+
+    UI(repo=repository).run()
