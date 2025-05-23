@@ -46,5 +46,16 @@ class Database:
             print(e)
             return None
 
+    def execinsert(self, query: str) -> pyodbc.Cursor:
+        cursor = self.conn.cursor()
+
+        try:
+            cursor.execute(query)
+            self.conn.commit()
+            return cursor
+        except Exception as e:
+            print(e)
+            return None
+
     def disconnect(self):
         pass
