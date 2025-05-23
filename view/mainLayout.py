@@ -2,14 +2,14 @@ import dash
 from dash import dcc, html
 from repository.biDashboardRepository import BiDashboardRepository
 from .figures.stockFigure import stockFigure
-from .figures.cylinders_soldFigure import get_cylinder_sales_figure
-from .figures.gas_sellingFigure import create_gas_sales_chart
-from .figures.gas_priceFigure import gas_price
-from .figures.get_blacklist_dataFigure import get_blacklist_data
-from .figures.empty_cylinderFigure import show_empty_cylinder_stock_figure
 from .figures.loanFigure import LoanFigure
 from .figures.GasIncomesFigure import GasIncomesFigure
 from .figures.IncomeFigure import IncomeProfit
+from .figures.ManagerTransactionFigure import GetManagerTransactionFigure
+from .figures.EmptySellingIncomeFigure import EmptySellingIncomeFigure
+from .figures.VehicleTransactionFigure import VehicleTransactionFigure
+from .figures.UnFinishedLoanBalanceFigure import UnFinishedLoanBalanceFigure
+from .figures.CylinderSellCountFigure import CylinderSellCountFigure
 
 
 def mainLayout(repo: BiDashboardRepository):
@@ -36,6 +36,34 @@ def mainLayout(repo: BiDashboardRepository):
             html.H2("Income Deatails"),
             dcc.Graph(id='bar-chart3', figure=IncomeProfit(repository=repo)),
         ]),
+
+        
+          html.Div([
+            html.H2("Income Deatails"),
+            dcc.Graph(id='', figure=GetManagerTransactionFigure(repository=repo)),
+        ]),
+
+         html.Div([
+            html.H2("Income Deatails"),
+            dcc.Graph(id='', figure=EmptySellingIncomeFigure(repository=repo)),
+        ]),
+        
+
+         html.Div([
+            html.H2("vehical trantarction"),
+            dcc.Graph(id='', figure=VehicleTransactionFigure(repository=repo)),
+        ]),
+
+          html.Div([
+            html.H2("UnFinishedLoanBalance"),
+            dcc.Graph(id='', figure=UnFinishedLoanBalanceFigure(repository=repo)),
+        ]),
+
+          html.Div([
+            html.H2("UnFinishedLoanBalance"),
+            dcc.Graph(id='', figure=CylinderSellCountFigure(repository=repo)),
+        ]),
+
 
         
         

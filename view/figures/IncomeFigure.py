@@ -3,7 +3,7 @@ from repository.biDashboardRepository import BiDashboardRepository
 
 
 def IncomeProfit(repository: BiDashboardRepository):
-    data = repository.getSellingIncomeProfit()
+    data = repository.getEmptySellingIncomeProfit()
     cylinder_names = [x[0] for x in data]
     selling_income = [x[1] for x in data]
     selling_profit = [x[2] for x in data]
