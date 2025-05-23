@@ -11,7 +11,7 @@ from .figures.VehicleTransactionFigure import VehicleTransactionFigure
 from .figures.UnFinishedLoanBalanceFigure import UnFinishedLoanBalanceFigure
 from .figures.CylinderSellCountFigure import CylinderSellCountFigure
 from .figures.reg_and_unregFigure import RegAndUnregCustomerCountsFigure
-from .figures.CylinderCountFigure import CylinderCountFigure
+from .figures.CylinderCountFigure import displayCylinderCountCard
 
 def mainLayout(repo: BiDashboardRepository):
     return html.Div(
@@ -24,6 +24,17 @@ def mainLayout(repo: BiDashboardRepository):
             'backgroundColor': '#f5f5f5'
         },
         children=[
+            
+            
+            html.Div([
+                html.H2("Cylinder Inventory"),
+                dcc.Graph(figure=displayCylinderCountCard(repo)),
+
+            ] ),
+
+
+
+
             html.Div([
                 html.H2("Monthly Gas Comparison"),
                 dcc.Graph(figure=stockFigure(repository=repo)),
@@ -74,9 +85,5 @@ def mainLayout(repo: BiDashboardRepository):
                 dcc.Graph(figure=RegAndUnregCustomerCountsFigure(repository=repo)),
             ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-            html.Div([
-                html.H2("Cylinder Inventory"),
-                dcc.Graph(figure=CylinderCountFigure(repository=repo)),
-            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
         ]
     )
