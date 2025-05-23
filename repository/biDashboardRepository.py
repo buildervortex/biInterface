@@ -59,6 +59,29 @@ class BiDashboardRepository:
         finished_count = int(rows[1].count_t)
 
         return (unfinished_count, finished_count)
+
+
+    def getGasIncomes(self) -> tuple[str, int, int]:
+        query: str = f"select ct.display_name,cs.cylinder_count, (cs.cylinder_count*ct.filled_gas_cylinder_exchange_price) as selling_income, (cs.cylinder_count*ct.cylinder_exchange_profit) as selling_profit  from encompass as cs join cylinder_type as ct on cs.cylinder_type_id=ct.id;"
+
+        result = self.db.exec(query=query)
+
+        if result == None:
+            return []
+        
+        data: list[tuple[str, int, int]] = []
+
+        rows = result.fetchall()
+
+       
+        for row in rows:
+            name = row.display_name
+            selling_income = int(row.selling_income)
+            selling_profit = int(row.selling_profit)
+
+            data.append((name, selling_income, selling_profit))
+
+        return data
     
 
 

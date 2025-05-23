@@ -7,8 +7,10 @@ db.connect()
 repository = BiDashboardRepository(db=db)
 
 print(repository.getLoanFinishedUnfinishedCount("2024-04-05"))
+print(repository.getGasIncome())
 
 print(repository.getEmptySellingIncomeProfit())
 
 print(repository.getEachManagerTransactionCount())
 
+print(repository.getSellingIncomeProfit())
