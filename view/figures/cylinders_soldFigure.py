@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.express as px
+from repository.biDashboardRepository import BiDashboardRepository
 
 # Dummy sales data
 dummy_data = [

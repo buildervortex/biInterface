@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+from repository.biDashboardRepository import BiDashboardRepository
 
 def one_gas_price():
     # Cylinder sizes and their prices

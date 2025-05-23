@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.express as px
+from repository.biDashboardRepository import BiDashboardRepository
 
 def create_income_dashboard(time_value='daily'):
     # Dummy data

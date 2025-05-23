@@ -2,6 +2,7 @@ import dash
 from dash import dcc, html
 import plotly.express as px
 import pandas as pd
+from repository.biDashboardRepository import BiDashboardRepository
 
 # Function to get blacklist data
 def get_blacklist_data():

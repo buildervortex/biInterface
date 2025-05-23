@@ -1,11 +1,11 @@
 from dash import Dash, html, dcc, Input, Output
-from cylinders_sold import get_cylinder_sales_figure, dummy_data
-from gas_selling import create_gas_sales_chart
-from Income import create_income_dashboard
-from empty_cylinder import show_empty_cylinder_stock_figure
-from gas_price import gas_price
-from one_gas_price import one_gas_price
-from get_blacklist_data import create_blacklist_donut_chart_figure
+from view.figures.cylinders_soldFigure import get_cylinder_sales_figure, dummy_data
+from view.figures.gas_sellingFigure import create_gas_sales_chart
+from view.figures.IncomeFigure import create_income_dashboard
+from view.figures.empty_cylinderFigure import show_empty_cylinder_stock_figure
+from view.figures.gas_priceFigure import gas_price
+from view.figures.one_gas_priceFigure import one_gas_price
+from view.figures.get_blacklist_dataFigure import create_blacklist_donut_chart_figure
 import pandas as pd
 
 df = pd.DataFrame(dummy_data)

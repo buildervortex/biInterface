@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.graph_objects as go
+from repository.biDashboardRepository import BiDashboardRepository
 
 def create_gas_sales_chart():
     # Sample list data

@@ -1,4 +1,5 @@
 import plotly.express as px
+from repository.biDashboardRepository import BiDashboardRepository
 
 def show_empty_cylinder_stock_figure():
     data = dict(
