@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 from repository.biDashboardRepository import BiDashboardRepository
 
 def displayincome(repo) -> go.Figure:
-    count = repo.getCylinderCountFromUserToGiveUs()  # Use 'repo' here
+    count = repo.getActiveLoanAcount()  # Use 'repo' here
 
     fig = go.Figure()
 

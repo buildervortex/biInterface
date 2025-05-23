@@ -30,14 +30,19 @@ def mainLayout(repo: BiDashboardRepository):
             html.Div(
                 style={
                     'backgroundColor': 'aqua',
-                    'height': '100%',
+                    'height': '80%',
                     'width': '100%',
                     "display": "flex",
                     "alignItems": "center",
-                    "justifyContent": "center"
+                    "justifyContent": "center",
+                    "font-weight":"italic",
+                    "color":"black",
+                    "font-size":"50px",
+                    "borderRadius":"20px"
+
                 },
                 children=[
-                    html.H2("Cylinder Inventory")
+                    html.H1("Dashboard")
                 ]
             ),
             html.Div(
