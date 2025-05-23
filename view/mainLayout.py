@@ -14,104 +14,69 @@ from .figures.reg_and_unregFigure import RegAndUnregCustomerCountsFigure
 from .figures.CylinderCountFigure import CylinderCountFigure
 
 def mainLayout(repo: BiDashboardRepository):
-    return html.Div([
-          
-        html.Div([
-            html.H2("Monthly Gas Comparison"),
-            dcc.Graph(id='bar-chart', figure=stockFigure(repository=repo)),
-        ]),
+    return html.Div(
+        style={
+            'display': 'grid',
+            'gridTemplateColumns': 'repeat(auto-fit, minmax(500px, 1fr))',
+            'gap': '20px',
+            'padding': '20px',
+            'minHeight': '100vh',
+            'backgroundColor': '#f5f5f5'
+        },
+        children=[
+            html.Div([
+                html.H2("Monthly Gas Comparison"),
+                dcc.Graph(figure=stockFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-        html.Div([
-            html.H2("Loan Details"),
-            dcc.Graph(id='pie-chart', figure=LoanFigure(repository=repo)),
-        ]),
-        
+            html.Div([
+                html.H2("Loan Details"),
+                dcc.Graph(figure=LoanFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-        html.Div([
-            html.H2("Income Deatails"),
-            dcc.Graph(id='bar-chart2', figure=GasIncomesFigure(repository=repo)),
-        ]),
-        
+            html.Div([
+                html.H2("Gas Income Details"),
+                dcc.Graph(figure=GasIncomesFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-          html.Div([
-            html.H2("Income Deatails"),
-            dcc.Graph(id='bar-chart3', figure=IncomeProfit(repository=repo)),
-        ]),
+            html.Div([
+                html.H2("Total Profit"),
+                dcc.Graph(figure=IncomeProfit(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-        
-          html.Div([
-            html.H2("Income Deatails"),
-            dcc.Graph(id='', figure=GetManagerTransactionFigure(repository=repo)),
-        ]),
+            html.Div([
+                html.H2("Manager Transactions"),
+                dcc.Graph(figure=GetManagerTransactionFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-         html.Div([
-            html.H2("Income Deatails"),
-            dcc.Graph(id='', figure=EmptySellingIncomeFigure(repository=repo)),
-        ]),
-        
+            html.Div([
+                html.H2("Empty Cylinder Sales Income"),
+                dcc.Graph(figure=EmptySellingIncomeFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-         html.Div([
-            html.H2("vehical trantarction"),
-            dcc.Graph(id='', figure=VehicleTransactionFigure(repository=repo)),
-        ]),
+            html.Div([
+                html.H2("Vehicle Transactions"),
+                dcc.Graph(figure=VehicleTransactionFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-          html.Div([
-            html.H2("UnFinishedLoanBalance"),
-            dcc.Graph(id='', figure=UnFinishedLoanBalanceFigure(repository=repo)),
-        ]),
+            html.Div([
+                html.H2("Unfinished Loan Balance"),
+                dcc.Graph(figure=UnFinishedLoanBalanceFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-          html.Div([
-            html.H2("UnFinishedLoanBalance"),
-            dcc.Graph(id='', figure=CylinderSellCountFigure(repository=repo)),
-        ]),
+            html.Div([
+                html.H2("Cylinder Sell Count"),
+                dcc.Graph(figure=CylinderSellCountFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-         html.Div([
-            html.H2("UnFinishedLoanBalance"),
-            dcc.Graph(id='', figure=RegAndUnregCustomerCountsFigure(repository=repo)),
-        ]),
+            html.Div([
+                html.H2("Customer Registration Stats"),
+                dcc.Graph(figure=RegAndUnregCustomerCountsFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
 
-          html.Div([
-            html.H2("UnFinishedLoanBalance"),
-            dcc.Graph(id='', figure=CylinderCountFigure(repository=repo)),
-        ]),
-
-
-        
-        
-
-
-
-
-    #    html.Div(
-           
-    #         html.H1("Income Dashboard Example", style={'textAlign': 'center'}),
-    #         dcc.Graph(id='',figure=create_income_dashboard(repository=repo))    
-
-    #    ),
-
-
-    #    html.Div(
-    #         html.H2("Shell Gas Cylinder Sales", style={'textAlign': 'center'}),
-           
-    #        dcc.Graph(id='',figure=get_cylinder_sales_figure(repository=repo))
-           
-    #    ),
-
-
-    #     html.Div(
-    #         html.H2("Shell Gas Cylinder Sales", style={'textAlign': 'center'}),
-    #        dcc.Graph(id='',figure=create_gas_sales_chart(repository=repo))
-           
-    #    ),
-
-       
-    #     html.Div(
-    #         html.H2("Shell Gas Cylinder Sales", style={'textAlign': 'center'}),
-    #        dcc.Graph(id='',figure=show_empty_cylinder_stock_figure(repository=repo))
-           
-    #    )
-
-
-       
-    ])
-    pass
+            html.Div([
+                html.H2("Cylinder Inventory"),
+                dcc.Graph(figure=CylinderCountFigure(repository=repo)),
+            ], style={'backgroundColor': 'white', 'padding': '15px', 'borderRadius': '8px'}),
+        ]
+    )
