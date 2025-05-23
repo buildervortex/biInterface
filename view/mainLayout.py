@@ -12,23 +12,37 @@ from .figures.UnFinishedLoanBalanceFigure import UnFinishedLoanBalanceFigure
 from .figures.CylinderSellCountFigure import CylinderSellCountFigure
 from .figures.reg_and_unregFigure import RegAndUnregCustomerCountsFigure
 from .figures.CylinderCountFigure import displayCylinderCountCard
+from .figures.cardFigure import displayincome
 
 def mainLayout(repo: BiDashboardRepository):
     return html.Div(
+          
+         
+
+       
+           
+
         style={
             'display': 'grid',
-            'gridTemplateColumns': 'repeat(auto-fit, minmax(500px, 1fr))',
+            'gridTemplateColumns': '1fr 1fr',
             'gap': '20px',
             'padding': '20px',
             'minHeight': '100vh',
             'backgroundColor': '#f5f5f5'
         },
         children=[
-            
+           
             
             html.Div([
                 html.H2("Cylinder Inventory"),
                 dcc.Graph(figure=displayCylinderCountCard(repo)),
+
+            ] ),
+
+              
+            html.Div([
+                html.H2("Cylinder Inventory"),
+                dcc.Graph(figure=displayincome(repo)),
 
             ] ),
 
