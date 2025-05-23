@@ -31,5 +31,7 @@ print(repository.getSystemUsersHandledTransactionCount())
 print(repository.getCylinderTypeBySellCount())
 # print(repository.getSellingIncomeProfit())
 
-functionRepo.registerDeliveringCustomer(
-    "lahiru", "dilhara", "199034567496V", "447859", None)
+# functionRepo.registerDeliveringCustomer(
+#     "lahiru", "dilhara", "199034567496V", "447859", None)
+
+print(repository.getActiveLoanAcount())

@@ -60,7 +60,6 @@ class BiDashboardRepository:
 
         return (unfinished_count, finished_count)
 
-
     def getGasIncomes(self) -> tuple[str, int, int]:
         query: str = f"select ct.display_name,cs.cylinder_count, (cs.cylinder_count*ct.filled_gas_cylinder_exchange_price) as selling_income, (cs.cylinder_count*ct.cylinder_exchange_profit) as selling_profit  from encompass as cs join cylinder_type as ct on cs.cylinder_type_id=ct.id;"
 
@@ -68,12 +67,11 @@ class BiDashboardRepository:
 
         if result == None:
             return []
-        
+
         data: list[tuple[str, int, int]] = []
 
         rows = result.fetchall()
 
-       
         for row in rows:
             name = row.display_name
             selling_income = int(row.selling_income)
@@ -82,8 +80,6 @@ class BiDashboardRepository:
             data.append((name, selling_income, selling_profit))
 
         return data
-    
-
 
     def getEmptySellingIncomeProfit(self) -> list[tuple[str, float, float]]:
         query: str = f"select ct.display_name, (cs.cylinder_count*ct.cylinder_selling_price) as selling_income, (cs.cylinder_count*ct.cylinder_selling_profit) as selling_profit  from comprises as cs join cylinder_type as ct on cs.cylinder_type_id=ct.id;"
@@ -105,7 +101,7 @@ class BiDashboardRepository:
             data.append((cylinderName, income, profit))
 
         return data
-    
+
     def getEachManagerTransactionCount(self) -> list[tuple[str, int]]:
         query: str = f"select u.user_name,count(t.id) from manager as m left join transaction_t as t on t.manager_id = m.user_id left join user_t as u on m.user_id = u.id group by u.id,u.user_name;"
 
@@ -123,9 +119,7 @@ class BiDashboardRepository:
             transaction_count = int(row[1])
             data.append((user_name, transaction_count))
 
-
         return data
-    
 
     def getVehicleTransactionCounts(self) -> list[tuple[str, int]]:
         query: str = f"select dc.vehicle_number,count(rcst.customer_sale_transaction_id) as count_t from delivering_customer as dc left join registered_customer_sale_transaction as rcst on rcst.known_customer_id = dc.known_customer_id group by dc.vehicle_number order by count_t;"
@@ -144,10 +138,7 @@ class BiDashboardRepository:
             transaction_count = int(row.count_t)
             data.append((vehicle_number, transaction_count))
 
-
         return data
-    
-
 
     def getUnFinishedLoanBalanceCountAll(self) -> int:
         query: str = f"select sum(total_loan_amount - current_paid_amount) as sumation from loaned_payment where finished = 0;"
@@ -163,7 +154,6 @@ class BiDashboardRepository:
             return 0
 
         return int(row.sumation)
-    
 
     def getRegAndUnregCustomerCounts(self) -> list[tuple[str, int]]:
         query: str = f"select 'registered' as type, count(*) as count_t from registered_customer_sale_transaction union all select 'anonymous' as type, count(*) as count_t from anonymous_customer_sale_transaction;"
@@ -184,7 +174,6 @@ class BiDashboardRepository:
 
         return data
 
-
     def getCylinderCountFromUserToGiveUs(self) -> int:
         query: str = f"select sum(given_cylinder_count - taken_cylinder_count) as counter from covers;"
 
@@ -199,7 +188,6 @@ class BiDashboardRepository:
             return 0
 
         return int(row.counter)
-    
 
     def getSystemUsersHandledTransactionCount(self) -> list[tuple[int, str, int]]:
         query: str = f"select u.id,u.user_name,count(cst.id) from customer_sale_transaction as cst left join user_t as u on cst.user_id = u.id group by u.id,u.user_name;"
@@ -221,7 +209,6 @@ class BiDashboardRepository:
             data.append((user_id, user_name, transaction_count))
 
         return data
-    
 
     def getCylinderTypeBySellCount(self) -> list[tuple[str, int]]:
         query: str = f"select ct.display_name,sum(cv.given_cylinder_count) from customer_sale_exchange_transaction as cset join covers as cv on cv.customer_sale_exchange_transaction_id = cset.customer_sale_transaction_id left join cylinder_type as ct on ct.id = cv.cylinder_type_id group by ct.id,ct.display_name;"
@@ -242,4 +229,16 @@ class BiDashboardRepository:
 
         return data
 
+    def getActiveLoanAcount(self) -> int:
+        query: str = "select count(payment_id) as ct from loaned_payment where finished =0;"
 
+        result = self.db.exec(query=query)
+
+        if result is None:
+            return 0
+
+        rows = result.fetchall()
+
+        count = int(rows[0].ct)
+
+        return count
