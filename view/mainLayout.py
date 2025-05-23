@@ -43,6 +43,13 @@ def mainLayout(repo: BiDashboardRepository):
             html.H2("Shell Gas Cylinder Sales", style={'textAlign': 'center'}),
            dcc.Graph(id='',figure=create_gas_sales_chart(repository=repo))
            
+       ),
+
+       
+        html.Div(
+            html.H2("Shell Gas Cylinder Sales", style={'textAlign': 'center'}),
+           dcc.Graph(id='',figure=show_empty_cylinder_stock_figure(repository=repo))
+           
        )
 
 
