@@ -10,7 +10,8 @@ from .figures.EmptySellingIncomeFigure import EmptySellingIncomeFigure
 from .figures.VehicleTransactionFigure import VehicleTransactionFigure
 from .figures.UnFinishedLoanBalanceFigure import UnFinishedLoanBalanceFigure
 from .figures.CylinderSellCountFigure import CylinderSellCountFigure
-
+from .figures.reg_and_unregFigure import RegAndUnregCustomerCountsFigure
+from .figures.CylinderCountFigure import CylinderCountFigure
 
 def mainLayout(repo: BiDashboardRepository):
     return html.Div([
@@ -62,6 +63,16 @@ def mainLayout(repo: BiDashboardRepository):
           html.Div([
             html.H2("UnFinishedLoanBalance"),
             dcc.Graph(id='', figure=CylinderSellCountFigure(repository=repo)),
+        ]),
+
+         html.Div([
+            html.H2("UnFinishedLoanBalance"),
+            dcc.Graph(id='', figure=RegAndUnregCustomerCountsFigure(repository=repo)),
+        ]),
+
+          html.Div([
+            html.H2("UnFinishedLoanBalance"),
+            dcc.Graph(id='', figure=CylinderCountFigure(repository=repo)),
         ]),
 
 

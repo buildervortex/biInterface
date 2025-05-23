@@ -1,14 +1,14 @@
 import plotly.graph_objects as go
 from repository.biDashboardRepository import BiDashboardRepository
 
-def RegAndUnregCustomerCountsFigure(repository: BiDashboardRepository):
-    data = repository.getRegAndUnregCustomerCounts()
-    registerd_count = data[0]
-    unregisterd_count = data[1]
+def CylinderCountFigure(repository: BiDashboardRepository):
+    data = repository.getCylinderCountFromUserToGiveUs()
+    counter = data
+    
 
     # Correct data for Pie chart
-    labels = ['Unfinished Loans', 'Finished Loans']
-    values = [registerd_count, unregisterd_count]
+    labels = ['Cylinder Count From User To Give Us']
+    values = [ counter]
 
     # Pull each slice slightly out
     pull = [0.1, 0.1]
@@ -17,8 +17,8 @@ def RegAndUnregCustomerCountsFigure(repository: BiDashboardRepository):
         labels=labels,
         values=values,
         pull=pull,
-        marker=dict(line=dict(color='white', width=2)),
-        textinfo='label+percent+value',
+        marker=dict(line=dict(color='white', width=8)),
+        textinfo='label+value',
         hole=0  # Set to 0.4 if you want a donut chart
     )])
 
