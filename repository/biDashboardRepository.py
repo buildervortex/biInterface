@@ -62,7 +62,7 @@ class BiDashboardRepository:
     
 
 
-    def getSellingIncomeProfit(self) -> list[tuple[str, float, float]]:
+    def getEmptySellingIncomeProfit(self) -> list[tuple[str, float, float]]:
         query: str = f"select ct.display_name, (cs.cylinder_count*ct.cylinder_selling_price) as selling_income, (cs.cylinder_count*ct.cylinder_selling_profit) as selling_profit  from comprises as cs join cylinder_type as ct on cs.cylinder_type_id=ct.id;"
 
         result = self.db.exec(query=query)
@@ -82,4 +82,25 @@ class BiDashboardRepository:
             data.append((cylinderName, income, profit))
 
         return data
+    
+    def getEachManagerTransactionCount(self) -> list[tuple[str, int]]:
+        query: str = f"select u.user_name,count(t.id) from manager as m left join transaction_t as t on t.manager_id = m.user_id left join user_t as u on m.user_id = u.id group by u.id,u.user_name;"
+
+        result = self.db.exec(query=query)
+
+        if result is None:
+            return []
+
+        data: list[tuple[str, int]] = []
+
+        rows = result.fetchall()
+
+        for row in rows:
+            user_name = row[0]
+            transaction_count = int(row[1])
+            data.append((user_name, transaction_count))
+
+
+        return data
+
 

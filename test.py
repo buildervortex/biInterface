@@ -8,4 +8,7 @@ repository = BiDashboardRepository(db=db)
 
 print(repository.getLoanFinishedUnfinishedCount("2024-04-05"))
 
-print(repository.getSellingIncomeProfit())
+print(repository.getEmptySellingIncomeProfit())
+
+print(repository.getEachManagerTransactionCount())
+
