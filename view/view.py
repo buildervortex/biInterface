@@ -5,6 +5,7 @@ from dash import dcc, html
 import plotly.graph_objects as go
 
 from .figures.stockFigure import stockFigure
+from .mainLayout import mainLayout
 
 
 class MainLayout:
@@ -17,10 +18,7 @@ class MainLayout:
         pass
 
     def setLayout(self):
-        self.app.layout = html.Div([
-            html.H2("Monthly Gas Comparison"),
-            dcc.Graph(id='bar-chart', figure=stockFigure(repository=self.repository))
-        ])
+        self.app.layout = mainLayout(self.repository)
 
     def run(self):
         self.app.run(debug=True)
