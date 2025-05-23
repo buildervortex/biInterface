@@ -1,77 +1,30 @@
 import plotly.graph_objects as go
 from repository.biDashboardRepository import BiDashboardRepository
 
-
 def LoanFigure(repository: BiDashboardRepository):
-    data = repository.getLoanFinishedUnfinishedCount(2024,05.15)
-    unfinished_count=[x[0] for x in data]
-    finished_count=[x[1] for x in data]
+    data = repository.getLoanFinishedUnfinishedCount("2024-05-15")
+    unfinished_count = data[0]
+    finished_count = data[1]
 
+    # Correct data for Pie chart
+    labels = ['Unfinished Loans', 'Finished Loans']
+    values = [unfinished_count, finished_count]
 
-    x=unfinished_count,
-    y=finished_count
-
-    # Define pull-out for each slice (0 = no pull, up to 1 = full pull)
-    pull = [0.1, 0.1, 0.1]
+    # Pull each slice slightly out
+    pull = [0.1, 0.1]
 
     fig = go.Figure(data=[go.Pie(
-        unfinished_count=x,
-        finished_count=y,
+        labels=labels,
+        values=values,
         pull=pull,
         marker=dict(line=dict(color='white', width=2)),
         textinfo='label+percent+value',
-        hole=0,  # For donut style, set hole=0.4
+        hole=0  # Set to 0.4 if you want a donut chart
     )])
 
     fig.update_layout(
-        
         height=600,
         width=600
     )
 
     return fig
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def one_gas_price():
-#     # Cylinder sizes and their prices
-#     labels = ['12.5kg', '5kg', '2.5kg']
-#     values = [4500, 2000, 1100]  # Example prices
-
-#     # Define pull-out for each slice (0 = no pull, up to 1 = full pull)
-#     pull = [0.1, 0.1, 0.1]
-
-#     fig = go.Figure(data=[go.Pie(
-#         labels=labels,
-#         values=values,
-#         pull=pull,
-#         marker=dict(line=dict(color='white', width=2)),
-#         textinfo='label+percent+value',
-#         hole=0,  # For donut style, set hole=0.4
-#     )])
-
-#     fig.update_layout(
-        
-#         height=600,
-#         width=600
-#     )
-
-#     return fig
